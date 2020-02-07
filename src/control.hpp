@@ -4,12 +4,13 @@
 //
 //  Created by LIFE_MAC_46 on 2020/01/31.
 //
-#pragma once
+//#pragma once
 
 #define lOOPTRACKNUM 8
 
 #include "ofMain.h"
 #include "ofxSyphon.h"
+#include "liveClientOsc.hpp"
 
 class ControlApp: public ofBaseApp {
 public:
@@ -20,6 +21,7 @@ public:
      
      void playLoop(float x, float y, float w, float h);
      void recClear(int loopNum);
+     
      ofVideoGrabber vid;//カメラ
      ofFbo fbo;//カメラのfboオブジェクト
      ofFbo loopSaveFbo[lOOPTRACKNUM];
@@ -49,5 +51,7 @@ public:
      
      ofxSyphonServer server;
      ofFbo outFbo;
+     
+     LiveClientOsc liveC;
      
 };

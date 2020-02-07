@@ -116,6 +116,9 @@ void ControlApp::draw(){
      outFbo.end();
      outFbo.draw(0, 0, width*0.5, height*0.5);
      
+     //OscStatus
+     liveC.drawDebug(width*0.81, height*0.1);
+     
      //枠線表示
      ofNoFill();
      ofSetLineWidth(3);
