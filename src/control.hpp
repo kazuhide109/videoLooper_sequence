@@ -4,13 +4,16 @@
 //
 //  Created by LIFE_MAC_46 on 2020/01/31.
 //
-//#pragma once
+#pragma once
 
 #define lOOPTRACKNUM 8
 
 #include "ofMain.h"
 #include "ofxSyphon.h"
-#include "liveClientOsc.hpp"
+#include "ofxTktrPerformanceTuning.h"
+
+#include "OscClient.hpp"
+
 
 class ControlApp: public ofBaseApp {
 public:
@@ -20,7 +23,8 @@ public:
      void keyPressed(int key);
      
      void playLoop(float x, float y, float w, float h);
-     void recClear(int loopNum);
+     void recClear(int _loopNum);
+     void recStart(int _loopNum);
      
      ofVideoGrabber vid;//カメラ
      ofFbo fbo;//カメラのfboオブジェクト
@@ -34,12 +38,17 @@ public:
      int width;//コントロール画面の大きさ
      int height;
      int loopNum;//ループの保存先番号
-     int pFrameNum;
+     int pFrameNum = 600;
      bool isRec;//ループ記録の状態
      
-     int recFrame;
-     int currentFrame;
-     int total;
+     vector<int> beatBegin;
+     vector<int> loopBeatNum;
+     
+     vector<int> recFrame;
+     vector<int> currentFrame;
+     vector<int> total;
+     vector<int> stopper;
+     vector<int> mute;
      bool isPlay[lOOPTRACKNUM];
      bool isHave[lOOPTRACKNUM];
      float loopSec;
@@ -52,6 +61,7 @@ public:
      ofxSyphonServer server;
      ofFbo outFbo;
      
-     LiveClientOsc liveC;
+     LiveClientOsc liveClientOsc;
+     bool test;
      
 };
